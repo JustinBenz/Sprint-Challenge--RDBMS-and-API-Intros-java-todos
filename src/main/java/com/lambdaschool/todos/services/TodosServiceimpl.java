@@ -16,12 +16,10 @@ public class TodosServiceimpl implements TodosService{
     private TodoRepository todoRepository;
 
     @Override
-    public Todos markComplete(Todos updatedTodos, long todoid){
+    public Todos markComplete(long todoid){
 
         Todos currentTodos = todoRepository.findById(todoid).orElseThrow(() -> new EntityNotFoundException("Todo with" + todoid + "Was not found"));
-        if(updatedTodos.isCompleted()){
-            currentTodos.setCompleted(updatedTodos.isCompleted());
-        }
+        currentTodos.setCompleted(true);
         return todoRepository.save(currentTodos);   
     }
 

@@ -27,11 +27,11 @@ public class TodosController
      * @param todoid The todo to be marked complete
      * @return Status of OK
      */
-    @PatchMapping(value = "/todo/{todoid}", produces = "application/json", consumes = "application/json")
-    public ResponseEntity<?> completeTodo(@RequestBody Todos updatedTodos, @PathVariable long todoid)
+    @PatchMapping(value = "/todo/{todoid}", produces = "application/json")
+    public ResponseEntity<?> completeTodo(@PathVariable long todoid)
     {
-        updatedTodos = todosService.markComplete(updatedTodos, todoid);
-        return new ResponseEntity<>(updatedTodos, HttpStatus.OK);
+        todosService.markComplete(todoid);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/todo/{todoid}")
